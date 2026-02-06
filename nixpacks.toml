@@ -2,4 +2,5 @@
 name = "php"
 
 [providers.php]
-extensions = ["ctype", "curl", "dom", "fileinfo", "filter", "hash", "intl", "mbstring", "openssl", "pcre", "pdo", "session", "tokenizer", "xml", "zip"]
+version = "8.2.30"
+extensions = ["intl", "zip", "ctype", "curl", "dom", "fileinfo", "filter", "hash", "mbstring", "openssl", "pcre", "pdo", "session", "tokenizer", "xml"]

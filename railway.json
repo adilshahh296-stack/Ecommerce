@@ -1,0 +1,5 @@
+{
+  "buildCommand": "composer install --no-interaction --no-ansi --optimize-autoloader",
+  "startCommand": "vendor/bin/heroku-php-nginx -C ./nginx.conf public/",
+  "environment": {}
+}
