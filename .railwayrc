@@ -1,3 +1,5 @@
 {
-  "builder": "nixpacks"
+  "builder": "nixpacks",
+  "buildCommand": "composer install --no-dev --optimize-autoloader",
+  "startCommand": "vendor/bin/heroku-php-nginx public/"
 }

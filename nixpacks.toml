@@ -1,0 +1,10 @@
+[build]
+pkgManager = "composer"
+
+[build.env]
+PHP_VERSION = "8.4"
+COMPOSER_ALLOW_SUPERUSER = "1"
+
+[start]
+runImage = "nixpacks/php:latest"
+cmd = "vendor/bin/heroku-php-nginx public/"
