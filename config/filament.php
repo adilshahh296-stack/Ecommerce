@@ -10,7 +10,7 @@ return [
 
     'branding' => [
         'name' => 'BRIGHT MAX TRADING',
-        'logo' => asset('images/logo.jpg'),
+        'logo' => '/images/logo.jpg',
     ],
 
     /*
