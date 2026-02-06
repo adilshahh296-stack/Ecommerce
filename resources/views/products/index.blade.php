@@ -3,7 +3,7 @@
 @section('title', 'Products')
 
 @section('content')
-<div class="grid grid-cols-5 gap-6">
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
     <!-- Sidebar -->
     <div class="col-span-1">
         <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24 space-y-6">
@@ -81,7 +81,7 @@
     </div>
 
     <!-- Products Grid -->
-    <div class="col-span-4">
+    <div class="col-span-1 md:col-span-3 lg:col-span-4">
         <div class="mb-8">
             <div class="flex items-center justify-between mb-4">
                 <div>
@@ -110,7 +110,7 @@
         </div>
 
         @if($products->count() > 0)
-            <div class="grid grid-cols-4 gap-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                 @foreach($products as $product)
                     <a href="{{ route('products.show', $product) }}" class="bg-white rounded-lg shadow hover:shadow-2xl transition overflow-hidden group">
                         <!-- Image -->

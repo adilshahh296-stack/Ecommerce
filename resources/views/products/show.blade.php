@@ -3,10 +3,10 @@
 @section('title', $product->name)
 
 @section('content')
-<div class="grid grid-cols-2 gap-12 mb-12">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 mb-12">
     <!-- Product Image -->
     <div>
-        <div class="bg-gray-100 rounded-lg h-96 flex items-center justify-center shadow-md overflow-hidden mb-4 sticky top-24">
+        <div class="bg-gray-100 rounded-lg h-64 md:h-96 flex items-center justify-center shadow-md overflow-hidden mb-4 md:sticky md:top-24">
             <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300">
         </div>
     </div>
@@ -17,7 +17,7 @@
             <a href="{{ route('products.category', $product->category) }}" class="text-blue-600 hover:text-blue-700 font-semibold text-sm uppercase tracking-wide">{{ $product->category->name }}</a>
         @endif
         
-        <h1 class="text-4xl font-bold my-4 text-gray-800">{{ $product->name }}</h1>
+        <h1 class="text-2xl md:text-4xl font-bold my-4 text-gray-800">{{ $product->name }}</h1>
         
         <!-- Rating Section -->
         <div class="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">

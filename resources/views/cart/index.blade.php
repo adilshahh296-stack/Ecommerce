@@ -3,20 +3,20 @@
 @section('title', 'Shopping Cart')
 
 @section('content')
-<div class="grid grid-cols-3 gap-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
     <!-- Cart Items -->
-    <div class="col-span-2">
+    <div class="col-span-1 md:col-span-2">
         <div class="mb-8">
-            <h1 class="text-4xl font-bold text-gray-800">Shopping Cart</h1>
+            <h1 class="text-2xl md:text-4xl font-bold text-gray-800">Shopping Cart</h1>
             <p class="text-gray-600 mt-2">{{ count($items) }} {{ count($items) == 1 ? 'item' : 'items' }} in cart</p>
         </div>
 
         @if(count($items) > 0)
             <div class="space-y-4">
                 @foreach($items as $item)
-                    <div class="bg-white rounded-lg shadow hover:shadow-md transition p-6 flex items-center gap-6 border-l-4 border-blue-600">
+                    <div class="bg-white rounded-lg shadow hover:shadow-md transition p-4 md:p-6 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 border-l-4 border-blue-600">
                         <!-- Product Image -->
-                        <div class="bg-gray-100 w-24 h-24 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
+                        <div class="bg-gray-100 w-20 h-20 md:w-24 md:h-24 rounded-lg flex items-center justify-center flex-shrink-0 overflow-hidden">
                             @if($item['product']->image)
                                 <img src="{{ $item['product']->image }}" alt="{{ $item['product']->name }}" class="w-full h-full object-cover">
                             @else

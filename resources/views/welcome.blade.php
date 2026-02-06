@@ -5,35 +5,35 @@
 @section('content')
 <!-- Carousel/Banner Section -->
 <div class="relative mb-8 rounded-lg overflow-hidden shadow-lg">
-    <div class="carousel relative w-full h-96 bg-gray-200">
+    <div class="carousel relative w-full h-48 md:h-96 bg-gray-200">
         <div class="carousel-slide active absolute inset-0">
-            <div class="w-full h-full bg-gradient-to-r from-blue-600 to-blue-400 flex items-center justify-center">
+            <div class="w-full h-full bg-gradient-to-r from-blue-600 to-blue-400 flex items-center justify-center p-4 md:p-0">
                 <div class="text-center text-white">
-                    <h1 class="text-5xl font-bold mb-4">Welcome to BRIGHT MAX</h1>
-                    <p class="text-2xl mb-8">Premium Products at Best Prices</p>
-                    <a href="{{ route('products.index') }}" class="inline-block bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition text-lg">
+                    <h1 class="text-2xl md:text-5xl font-bold mb-2 md:mb-4">Welcome to BRIGHT MAX</h1>
+                    <p class="text-lg md:text-2xl mb-4 md:mb-8">Premium Products at Best Prices</p>
+                    <a href="{{ route('products.index') }}" class="inline-block bg-white text-blue-600 px-4 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-gray-100 transition text-sm md:text-lg">
                         SHOP NOW
                     </a>
                 </div>
             </div>
         </div>
         <div class="carousel-slide absolute inset-0">
-            <div class="w-full h-full bg-gradient-to-r from-purple-600 to-pink-400 flex items-center justify-center">
+            <div class="w-full h-full bg-gradient-to-r from-purple-600 to-pink-400 flex items-center justify-center p-4 md:p-0">
                 <div class="text-center text-white">
-                    <h2 class="text-5xl font-bold mb-4">Flash Sale</h2>
-                    <p class="text-2xl mb-8">Up to 50% OFF on Selected Items</p>
-                    <a href="{{ route('products.index') }}" class="inline-block bg-white text-purple-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition text-lg">
+                    <h2 class="text-2xl md:text-5xl font-bold mb-2 md:mb-4">Flash Sale</h2>
+                    <p class="text-lg md:text-2xl mb-4 md:mb-8">Up to 50% OFF on Selected Items</p>
+                    <a href="{{ route('products.index') }}" class="inline-block bg-white text-purple-600 px-4 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-gray-100 transition text-sm md:text-lg">
                         EXPLORE DEALS
                     </a>
                 </div>
             </div>
         </div>
         <div class="carousel-slide absolute inset-0">
-            <div class="w-full h-full bg-gradient-to-r from-green-600 to-teal-400 flex items-center justify-center">
+            <div class="w-full h-full bg-gradient-to-r from-green-600 to-teal-400 flex items-center justify-center p-4 md:p-0">
                 <div class="text-center text-white">
-                    <h2 class="text-5xl font-bold mb-4">New Arrivals</h2>
-                    <p class="text-2xl mb-8">Check Out Latest Products</p>
-                    <a href="{{ route('products.index') }}" class="inline-block bg-white text-green-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition text-lg">
+                    <h2 class="text-2xl md:text-5xl font-bold mb-2 md:mb-4">New Arrivals</h2>
+                    <p class="text-lg md:text-2xl mb-4 md:mb-8">Check Out Latest Products</p>
+                    <a href="{{ route('products.index') }}" class="inline-block bg-white text-green-600 px-4 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-gray-100 transition text-sm md:text-lg">
                         VIEW COLLECTION
                     </a>
                 </div>
@@ -59,7 +59,7 @@
 
 <!-- Category Cards -->
 <div class="mb-12">
-    <div class="grid grid-cols-6 gap-4">
+    <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4">
         <div class="category-card bg-white rounded-lg shadow hover:shadow-lg text-center p-6 cursor-pointer">
             <div class="text-5xl mb-3">🎮</div>
             <p class="font-semibold text-gray-700">Electronics</p>
@@ -88,13 +88,13 @@
 </div>
 
 <!-- Special Deals Banner -->
-<div class="mb-12 bg-gradient-to-r from-red-500 to-red-400 rounded-lg p-8 text-white shadow-lg">
-    <div class="flex items-center justify-between">
+<div class="mb-12 bg-gradient-to-r from-red-500 to-red-400 rounded-lg p-4 md:p-8 text-white shadow-lg">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-            <h2 class="text-4xl font-bold mb-2">⚡ Flash Sale</h2>
-            <p class="text-xl opacity-90">Limited Time Offers - Shop Now!</p>
+            <h2 class="text-2xl md:text-4xl font-bold mb-2">⚡ Flash Sale</h2>
+            <p class="text-lg md:text-xl opacity-90">Limited Time Offers - Shop Now!</p>
         </div>
-        <a href="{{ route('products.index') }}" class="bg-white text-red-500 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+        <a href="{{ route('products.index') }}" class="bg-white text-red-500 px-4 md:px-8 py-2 md:py-3 rounded-lg font-bold hover:bg-gray-100 transition text-sm md:text-base">
             BROWSE DEALS
         </a>
     </div>
@@ -102,10 +102,10 @@
 
 <!-- TOP PICKS SECTION - Like Shopee -->
 <div class="mb-12">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2">
         <i class="fas fa-star text-yellow-400"></i>Top Picks For You
     </h2>
-    <div class="grid grid-cols-5 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
         @php
             $topProducts = $products->take(5);
         @endphp
@@ -168,12 +168,12 @@
 </div>
 
 <!-- BEST SELLERS CAROUSEL -->
-<div class="mb-12 bg-purple-50 rounded-lg p-8">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2">
+<div class="mb-12 bg-purple-50 rounded-lg p-4 md:p-8">
+    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 flex items-center gap-2">
         <i class="fas fa-fire text-orange-500"></i>Best Sellers This Week
     </h2>
     <div class="relative">
-        <div class="grid grid-cols-5 gap-4" id="bestsellersCarousel">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4" id="bestsellersCarousel">
             @php
                 $bestSellers = $products->shuffle()->take(10);
             @endphp
@@ -249,7 +249,7 @@
         </a>
     </div>
     
-    <div class="grid grid-cols-5 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4">
         @forelse($products as $product)
             <a href="{{ route('products.show', $product) }}" class="bg-white rounded-lg shadow hover:shadow-2xl transition overflow-hidden group">
                 <!-- Image -->
@@ -338,7 +338,7 @@
 </div>
 
 <!-- Features Section -->
-<div class="grid grid-cols-3 gap-8 bg-gray-50 p-8 rounded-lg mb-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 bg-gray-50 p-4 md:p-8 rounded-lg mb-12">
     <div class="text-center">
         <div class="text-4xl text-blue-600 mb-4">
             <i class="fas fa-shield-alt"></i>
