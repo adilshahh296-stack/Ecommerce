@@ -1,2 +1,5 @@
+[[providers]]
+name = "php"
+
 [providers.php]
 extensions = ["ctype", "curl", "dom", "fileinfo", "filter", "hash", "intl", "mbstring", "openssl", "pcre", "pdo", "session", "tokenizer", "xml", "zip"]
