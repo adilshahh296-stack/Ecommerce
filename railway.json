@@ -1,5 +1,5 @@
 {
-  "buildCommand": "composer install --no-interaction --no-ansi --optimize-autoloader",
+  "buildCommand": "composer install --no-interaction --no-ansi --optimize-autoloader --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip",
   "startCommand": "vendor/bin/heroku-php-nginx -C ./nginx.conf public/",
   "environment": {}
 }
