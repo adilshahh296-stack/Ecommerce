@@ -1,0 +1,14 @@
+[build]
+builder = "heroku"
+# Ignore platform requirements for extensions that Railway's build process doesn't include
+buildCommand = "composer install --no-dev --no-interaction --no-ansi --optimize-autoloader --ignore-platform-req=ext-intl --ignore-platform-req=ext-zip"
+
+[deploy]
+startCommand = "vendor/bin/heroku-php-nginx -C ./nginx.conf public/"
+healthcheckPath = "/"
+
+[env]
+LOG_CHANNEL = "single"
+CACHE_DRIVER = "file"
+SESSION_DRIVER = "file"
+QUEUE_CONNECTION = "sync"
