@@ -3,20 +3,23 @@
 @section('title', 'Products')
 
 @section('content')
+<!-- Prominent Search Bar at Top -->
+<div class="mb-8 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow-lg p-6">
+    <div class="max-w-4xl mx-auto">
+        <h2 class="text-white text-2xl font-bold mb-4">Find Your Perfect Product</h2>
+        <form action="{{ route('products.index') }}" method="GET" class="flex gap-2">
+            <input type="text" name="search" placeholder="Search products, brands, categories..." value="{{ request('search') }}" class="flex-1 px-6 py-3 border-0 rounded-lg focus:ring-2 focus:ring-white focus:outline-none">
+            <button type="submit" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition flex items-center gap-2">
+                <i class="fas fa-search"></i>Search
+            </button>
+        </form>
+    </div>
+</div>
+
 <div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6">
     <!-- Sidebar -->
     <div class="col-span-1">
         <div class="bg-white rounded-lg shadow-lg p-6 sticky top-24 space-y-6">
-            <!-- Search -->
-            <div>
-                <h3 class="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                    <i class="fas fa-search text-blue-600"></i>Search
-                </h3>
-                <form action="{{ route('products.index') }}" method="GET">
-                    <input type="text" name="search" placeholder="Search products..." value="{{ request('search') }}" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
-                    <button type="submit" class="w-full mt-2 bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">Search</button>
-                </form>
-            </div>
 
             <!-- Price Filter -->
             <div class="border-t pt-6">
@@ -112,66 +115,81 @@
         @if($products->count() > 0)
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
                 @foreach($products as $product)
-                    <a href="{{ route('products.show', $product) }}" class="bg-white rounded-lg shadow hover:shadow-2xl transition overflow-hidden group">
-                        <!-- Image -->
+                    <a href="{{ route('products.show', $product) }}" class="bg-white rounded-lg shadow-md hover:shadow-xl transition overflow-hidden group">
+                        <!-- Image Container -->
                         <div class="bg-gray-100 h-56 flex items-center justify-center overflow-hidden relative">
                             <img src="{{ $product->image }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                            
+                            <!-- Discount Badge -->
                             @if($product->original_price && $product->original_price > $product->price)
-                                <div class="absolute top-3 right-3 bg-red-500 text-white px-4 py-2 rounded-full font-bold text-sm shadow-lg">
-                                    -{{ round((1 - $product->price / $product->original_price) * 100) }}%
+                                <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded font-bold text-sm shadow-lg">
+                                    {{ round((1 - $product->price / $product->original_price) * 100) }}% OFF
                                 </div>
                             @endif
+                            
+                            <!-- Stock Alert -->
                             @if($product->stock <= 5 && $product->stock > 0)
-                                <div class="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 rounded text-xs font-semibold">
+                                <div class="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded text-xs font-semibold">
                                     Only {{ $product->stock }} left!
+                                </div>
+                            @elseif($product->stock == 0)
+                                <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                                    <span class="text-white font-bold text-lg">Out of Stock</span>
                                 </div>
                             @endif
                         </div>
 
-                        <!-- Content -->
+                        <!-- Card Content -->
                         <div class="p-4">
+                            <!-- Category -->
                             @if($product->category)
-                                <p class="text-blue-600 text-xs font-bold uppercase tracking-wide mb-1">{{ $product->category->name }}</p>
+                                <p class="text-blue-600 text-xs font-bold uppercase tracking-wide mb-2">{{ $product->category->name }}</p>
                             @endif
                             
-                            <h3 class="font-semibold text-sm text-gray-800 line-clamp-2 mb-2">{{ $product->name }}</h3>
+                            <!-- Product Name -->
+                            <h3 class="font-semibold text-sm text-gray-800 line-clamp-2 mb-2 h-10">{{ $product->name }}</h3>
                             
-                            <!-- Rating -->
-                            <div class="flex items-center gap-1 mb-3">
-                                <div class="flex star-rating">
+                            <!-- Rating with Count -->
+                            <div class="flex items-center gap-2 mb-3">
+                                <div class="flex gap-0.5">
                                     @for($i = 0; $i < 5; $i++)
                                         @if($i < round($product->average_rating ?? 0))
-                                            <i class="fas fa-star text-sm"></i>
+                                            <i class="fas fa-star text-yellow-400 text-xs"></i>
                                         @else
-                                            <i class="far fa-star text-sm text-gray-300"></i>
+                                            <i class="far fa-star text-gray-300 text-xs"></i>
                                         @endif
                                     @endfor
                                 </div>
-                                <span class="text-xs text-gray-600 ml-1">({{ $product->reviews_count ?? 0 }})</span>
+                                <span class="text-sm font-semibold text-gray-700">
+                                    {{ number_format($product->average_rating ?? 0, 1) }} <span class="text-gray-500">| ({{ $product->reviews_count ?? 0 }})</span>
+                                </span>
                             </div>
 
-                            <!-- Price -->
-                            <div class="mb-3">
-                                <div class="flex items-baseline gap-2">
-                                    <span class="text-xl font-bold text-gray-900">AED {{ number_format($product->price, 0) }}</span>
-                                    @if($product->original_price)
-                                        <span class="text-xs text-gray-500 line-through">AED {{ number_format($product->original_price, 0) }}</span>
+                            <!-- Pricing Section -->
+                            <div class="mb-4 bg-gray-50 p-3 rounded">
+                                <!-- Sale Price (Main) -->
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-2xl font-bold text-gray-900">AED {{ number_format($product->price, 0) }}</span>
+                                    
+                                    <!-- Original Price (Strikethrough) -->
+                                    @if($product->original_price && $product->original_price > $product->price)
+                                        <span class="text-sm text-gray-500 line-through">AED {{ number_format($product->original_price, 0) }}</span>
                                     @endif
                                 </div>
-                            </div>
-
-                            <!-- Stock Status -->
-                            <div class="mb-3">
-                                @if($product->stock > 0)
-                                    <span class="text-xs text-green-600 font-semibold">✓ In Stock</span>
-                                @else
-                                    <span class="text-xs text-red-600 font-semibold">Out of Stock</span>
+                                
+                                <!-- You Saved Text -->
+                                @if($product->original_price && $product->original_price > $product->price)
+                                    <p class="text-xs text-green-600 font-semibold">
+                                        ✓ You saved AED {{ number_format($product->original_price - $product->price, 0) }}
+                                    </p>
                                 @endif
                             </div>
 
-                            <!-- Button -->
-                            <button type="button" onclick="event.preventDefault(); addToCart({{ $product->id }})" class="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 transition text-sm">
-                                Add to Cart
+                            <!-- Add to Cart Button -->
+                            <button type="button" onclick="event.preventDefault(); addToCart({{ $product->id }})" 
+                                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-bold transition flex items-center justify-center gap-2 text-sm {{ $product->stock == 0 ? 'opacity-50 cursor-not-allowed' : '' }}"
+                                {{ $product->stock == 0 ? 'disabled' : '' }}>
+                                <i class="fas fa-shopping-cart"></i>Add to Cart
                             </button>
                         </div>
                     </a>
