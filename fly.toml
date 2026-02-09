@@ -1,0 +1,34 @@
+# fly.toml app configuration generated for Laravel
+app = "ecommerce-iegfwa"
+primary_region = "sjc"
+console_command = "/app/vendor/bin/tinker"
+
+[build]
+  builder = "heroku"
+  buildpacks = ["heroku-community/nginx-buildpack", "heroku/php"]
+
+[env]
+  APP_ENV = "production"
+  APP_DEBUG = "false"
+  LOG_CHANNEL = "single"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_start_machines = true
+  auto_stop_machines = true
+  min_machines_running = 1
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 8080
+  processes = ["app"]
+  
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 1000
+    soft_limit = 100
+
+[[statics]]
+  guest_path = "/app/public"
+  url_prefix = "/"

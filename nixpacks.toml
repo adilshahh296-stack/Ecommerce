@@ -3,4 +3,29 @@ name = "php"
 
 [providers.php]
 version = "8.2.30"
-extensions = ["intl", "zip", "ctype", "curl", "dom", "fileinfo", "filter", "hash", "mbstring", "openssl", "pcre", "pdo", "session", "tokenizer", "xml"]
+extensions = ["intl", "zip", "ctype", "curl", "dom", "fileinfo", "filter", "hash", "mbstring", "openssl", "pcre", "pdo", "session", "tokenizer", "xml", "json", "sqlite3"]
+
+[providers.php.fpm]
+version = "8.2.30"
+
+[[providers]]
+name = "nodejs"
+
+[providers.nodejs]
+version = "22"
+
+[[providers]]
+name = "web"
+
+[providers.web]
+port = 8080
+start = "vendor/bin/heroku-php-nginx -C ./nginx.conf public/"
+
+[phases.setup]
+run = "mkdir -p storage/framework/{sessions,views,cache,testing} storage/logs bootstrap/cache"
+
+[phases.build]
+cmds = ["php artisan config:cache", "php artisan event:cache", "php artisan route:cache", "npm run build"]
+
+[phases.install]
+dependsOn = ["setup"]
